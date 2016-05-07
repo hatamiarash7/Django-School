@@ -1,0 +1,128 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="{% static "img/favicon.png" %}">
+		<title>سامانه مدیریت آموزشی</title>
+		<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+		<link href="{% static "css/bootstrap-material-design.css" %}" rel="stylesheet">
+		<link href="{% static "css/ripples.css" %}" rel="stylesheet">
+		<link href="{% static "css/mine.css" %}" rel="stylesheet">
+		<script>
+			$.material.init()
+		</script>
+	</head>
+	<body>
+		<div class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-collapse collapse navbar-responsive-collapse">
+					<ul class="nav navbar-nav">
+						<li class="yekan-small active"><a href="{% url 'main' %}">صفحه اصلی</a></li>
+						<li class="yekan-small"><a href="{% url 'student_index' %}">دانش آموزان</a></li>
+						<li class="yekan-small"><a href="{% url 'teacher_index' %}">اساتید</a></li>
+						<li class="yekan-small"><a href="{% url 'lesson_index' %}">دروس</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="yekan-small"><a href="{% url 'about' %}">درباره</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="jumbotron">
+				<h1 style="text-align:center;" class="yekan-big">اضافه کردن درس جدید</h1>           
+			</div>
+			<form method="POST" accept-charset="utf-8">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-md-2" style="text-align:center;">
+					<label class="yekan-small" style="text-align:center; color:#009688;">: نام</label><br/>
+					{{ form.name }}
+				</div>
+				<div class="col-md-2" style="text-align:center;">
+					<label class="yekan-small" style="text-align:center; color:#009688;">: کد</label><br/>
+					{{ form.code }}
+				</div>
+				<div class="col-md-2" style="text-align:center;">
+					<label class="yekan-small" style="text-align:center; color:#009688;">: ظرفیت</label><br/>
+					{{ form.capacity }}
+				</div>	
+				<div class="col-md-2" style="text-align:center;">
+					<label class="yekan-small" style="text-align:center; color:#009688;">: تعداد واحد</label><br/>
+					{{ form.uno }}
+				</div>	
+				<div class="col-md-2" style="text-align:center;">
+					<label class="yekan-small" style="text-align:center; color:#009688;">: شماره کلاس</label><br/>
+					{{ form.cno }}
+				</div>
+				<div class="col-md-2" style="text-align:center;">
+					<label class="yekan-small" style="text-align:center; color:#009688;">: ساعت</label><br/>
+					{{ form.hour }}
+				</div>	
+			</div>
+			</br></br>
+			<div class="row">
+				<div class="col-md-12" style="text-align:center;">
+					<input type="submit" class="btn btn-primary btn-raised btn-lg yekan-small" value="ثبت"/>
+				</div>
+			</div>
+		</form>
+		</div><!-- /.container -->
+		</br></br>
+		<footer class="footer">
+			<div class="container">
+				<p class="roboto-normal">Designed By : <a href="http://arash-hatami.ir" target="blank">Arash Hatami</a></p>
+			</div>
+		</footer>
+		<!-- Login Form -->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title yekan-big" style="text-align:center;">ورود به حساب کاربری</h4>
+					</div>
+					<div class="modal-body">
+						<form method="POST" accept-charset="utf-8">
+							{% csrf_token %}
+							<div class="row">
+								<div class="col-md-2" style="text-align:center;"></div>
+								<div class="col-md-5" style="text-align:center;">
+									{{ form.username }}
+								</div>
+								<div class="col-md-3" style="text-align:center;">
+									<label class="yekan-small" style="text-align:center; color:#009688;">: نام کاربری</label><br/>
+								</div>
+								<div class="col-md-2" style="text-align:center;"></div>
+							</div>
+							<div class="row">
+								<div class="col-md-2" style="text-align:center;"></div>
+								<div class="col-md-5" style="text-align:center;">
+									{{ form.username }}
+								</div>
+								<div class="col-md-3" style="text-align:center;">
+									<label class="yekan-small" style="text-align:center; color:#009688;">: رمز عبور</label><br/>
+								</div>
+								<div class="col-md-2" style="text-align:center;"></div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer" style="text-align:center;">
+						<input type="submit" class="btn btn-primary btn-lg yekan-small" value="ورود"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- JavaScript
+		================================================== -->
+		<script src="{% static "js/bootstrap.js" %}"></script>
+		<script src="{% static "js/jquery.min.js" %}"></script>
+		<script src="{% static "js/material.min.js" %}"></script>
+		<script src="{% static "js/ripples.min.js" %}"></script>
+	</body>
+</html>

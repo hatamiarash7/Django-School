@@ -1,0 +1,171 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="{% static "img/favicon.png" %}">
+		<title>سامانه مدیریت آموزشی</title>
+		<link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+		<link href="{% static "css/bootstrap-material-design.css" %}" rel="stylesheet">
+		<link href="{% static "css/ripples.css" %}" rel="stylesheet">
+		<link href="{% static "css/mine.css" %}" rel="stylesheet">
+		<script>
+			$.material.init()
+		</script>
+	</head>
+	<body>
+		<div class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-collapse collapse navbar-responsive-collapse">
+					<ul class="nav navbar-nav">
+						<li class="yekan-small active"><a href="{% url 'main' %}">صفحه اصلی</a></li>
+						<li class="yekan-small"><a href="{% url 'student_index' %}">دانش آموزان</a></li>
+						<li class="yekan-small"><a href="{% url 'teacher_index' %}">اساتید</a></li>
+						<li class="yekan-small"><a href="{% url 'lesson_index' %}">دروس</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="yekan-small"><a href="{% url 'about' %}">درباره</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="jumbotron">
+				<h1 style="text-align:center;" class="yekan-big">دانشگاه ملایر</h1>      
+				<p style="text-align:center;" class="yekan-small">سامانه مدیریت آموزشی</p>      
+			</div>
+			<h1 style="text-align:center; color: #009688;" class="yekan-title">{{ Teacher.first_name }} {{ Teacher.last_name }}</h1></br>
+			</br>
+			<div class="row">
+				<div class="col-md-6" style="text-align=center;">
+					<ul class="list-group">
+						<li class="list-group-item yekan-big" style="text-align:center;"><h4><strong>تلفن ثابت</strong> : {{ Teacher.phone }}</h4></li>
+						<li class="list-group-item yekan-big" style="text-align:center;"><h4><strong>تلفن همراه</strong> : {{ Teacher.mobile }}</h4></li>	
+					</ul>
+				</div>
+				<div class="col-md-6" style="text-align=center;">
+					<ul class="list-group">
+						<li class="list-group-item yekan-big" style="text-align:center;"><h4><strong>کد پرسنلی استاد</strong> : {{ Teacher.tno }}</h4></li>
+						<li class="list-group-item yekan-big" style="text-align:center;"><h4><strong>ساعات تدریس</strong> : {{ Teacher.teach_hour }}</h4></li>	
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="text-align=center;">
+					<ul class="list-group">
+						<li class="list-group-item yekan-big" style="text-align:center;"><h4><strong>آدرس</strong> : {{ Teacher.address }}</h4></li>
+					</ul>
+				</div>
+			</div>
+			</br>
+			<hr class="divider">
+			<hr class="divider">
+			</br></br>
+			<form action="/teachers/{{ Teacher.id }}/update/" method="post" accept-charset="utf-8">
+				{% csrf_token %}
+				<div class="row">
+					<div class="col-md-2" style="text-align:center;">
+						<label for="update_first_name"  class="yekan-small" style="text-align:center; color:#009688;">نام</label><br/>
+						<input type="text" style="text-align:center;" class="form-control yekan-thin" name="update_first_name" id="update_first_name" value="{{ Teacher.first_name }}"/>
+					</div>
+					<div class="col-md-2" style="text-align:center;">
+						<label for="update_last_name"  class="yekan-small" style="text-align:center; color:#009688;">نام خانوادگی</label><br/>
+						<input type="text" style="text-align:center;" class="form-control yekan-thin" name="update_last_name" id="update_last_name" value="{{ Teacher.last_name }}" />
+					</div>
+					<div class="col-md-2" style="text-align:center;">
+						<label for="update_tno"  class="yekan-small" style="text-align:center; color:#009688;">شماره پرسنلی</label><br/>
+						<input type="text" style="text-align:center;" class="form-control yekan-thin" name="update_tno" id="update_tno" value="{{ Teacher.tno }}" />
+					</div>	
+					<div class="col-md-2" style="text-align:center;">
+						<label for="update_phone"  class="yekan-small" style="text-align:center; color:#009688;">تلفن ثابت</label><br/>
+						<input type="text" style="text-align:center;" class="form-control yekan-thin" name="update_phone" id="update_phone" value="{{ Teacher.phone }}" />
+					</div>	
+					<div class="col-md-2" style="text-align:center;">
+						<label for="update_mobile"  class="yekan-small" style="text-align:center; color:#009688;">تلفن همراه</label><br/>
+						<input type="text" style="text-align:center;" class="form-control yekan-thin" name="update_mobile" id="update_mobile" value="{{ Teacher.mobile }}"/>
+					</div>
+					<div class="col-md-2" style="text-align:center;">
+						<label for="update_teach_hour"  class="yekan-small" style="text-align:center; color:#009688;">ساعات تدریس</label><br/>
+						<input type="text" style="text-align:center;" class="form-control yekan-thin" name="update_teach_hour" id="teach_hour" value="{{ Teacher.teach_hour }}"/>
+					</div>
+				</div>
+				</br>
+				<div class="row">
+					<div class="col-md-2" style="text-align:center;"></div>
+					<div class="col-sm-8" style="text-align:center;">
+						<label for="update_address" class="yekan-small" style="text-align:center; color:#009688;">آدرس</label><br/>
+						<input type="text" style="text-align:center;" class="form-control yekan-thin" name="update_address" id="update_address" value="{{ Teacher.address }}"/>
+					</div>
+					<div class="col-md-2" style="text-align:center;"></div>
+				</div>
+				</br></br>
+				<div class="row">
+					<div class="col-md-2" style="text-align:center;">
+						<input type="submit" class="btn btn-primary btn-raised btn-lg yekan-small" value="به روزرسانی"/>
+					</div>
+					<div class="col-md-2" style="text-align:center;">
+						<a href="delete/" class="btn btn-danger btn-raised btn-lg yekan-small"/>حذف</a>
+					</div>
+					<div class="col-md-2" style="text-align:center;">
+						<a href="../../teachers" class="btn btn-success btn-raised btn-lg yekan-small">بازگشت</a>
+					</div>
+				</div>
+			</form>
+		</div><!-- /.container -->
+		</br></br>
+		<footer class="footer">
+			<div class="container">
+				<p class="roboto-normal">Designed By : <a href="http://arash-hatami.ir" target="blank">Arash Hatami</a></p>
+			</div>
+		</footer>
+		<!-- Login Form -->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title yekan-big" style="text-align:center;">ورود به حساب کاربری</h4>
+					</div>
+					<div class="modal-body">
+						<form method="POST" accept-charset="utf-8">
+							{% csrf_token %}
+							<div class="row">
+								<div class="col-md-2" style="text-align:center;"></div>
+								<div class="col-md-5" style="text-align:center;">
+									{{ form.username }}
+								</div>
+								<div class="col-md-3" style="text-align:center;">
+									<label class="yekan-small" style="text-align:center; color:#009688;">: نام کاربری</label><br/>
+								</div>
+								<div class="col-md-2" style="text-align:center;"></div>
+							</div>
+							<div class="row">
+								<div class="col-md-2" style="text-align:center;"></div>
+								<div class="col-md-5" style="text-align:center;">
+									{{ form.username }}
+								</div>
+								<div class="col-md-3" style="text-align:center;">
+									<label class="yekan-small" style="text-align:center; color:#009688;">: رمز عبور</label><br/>
+								</div>
+								<div class="col-md-2" style="text-align:center;"></div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer" style="text-align:center;">
+						<input type="submit" class="btn btn-primary btn-lg yekan-small" value="ورود"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- JavaScript
+		================================================== -->
+		<script src="{% static "js/bootstrap.js" %}"></script>
+		<script src="{% static "js/jquery.min.js" %}"></script>
+		<script src="{% static "js/material.min.js" %}"></script>
+		<script src="{% static "js/ripples.min.js" %}"></script>
+	</body>
+</html>

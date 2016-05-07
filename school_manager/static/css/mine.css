@@ -1,0 +1,71 @@
+body {
+	background: url('../img/bg.png')
+}
+@font-face {
+	font-family: 'yekan';
+	src: url('../fonts/yekan.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'kufi';
+	src: url('../fonts/kufi.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'roboto';
+	src: url('../fonts/Roboto.ttf') format('truetype');
+}
+.roboto-normal {
+	font-family: roboto;
+	font-size: 18px;
+}
+.roboto-big {
+	font-family: roboto;
+	font-size: 24px;
+}
+.yekan-title {
+	font-family: yekan;
+	font-size: 50px;
+}
+.yekan-big {
+	font-family: yekan;
+	font-size: 35px;
+}
+.yekan-small {
+	font-family: yekan;
+	font-size: 20px;
+}
+.yekan-thin {
+	font-family: yekan;
+	font-size: 18px;
+}
+.kufi-title {
+	font-family: kufi;
+	font-size: 50px;
+}
+.kufi-big {
+	font-family: kufi;
+	font-size: 35px;
+}
+.kufi-small {
+	font-family: kufi;
+	font-size: 20px;
+}
+.kufi-thin {
+	font-family: kufi;
+	font-size: 18px;
+}
+.divider {
+	height: 1px;
+	width: 100%;
+	display: block;
+	margin: 1px 0;
+	overflow: hidden;
+	background-color: #009688;
+}
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 34px;
+	background-color: #e5e5e5;
+	text-align: center;
+}
